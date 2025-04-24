@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .btn {
+    @apply px-4 py-2 rounded-md font-medium transition-colors duration-200;
+  }
+  .btn-primary {
+    @apply bg-primary text-white hover:bg-opacity-90;
+  }
+  .btn-secondary {
+    @apply bg-secondary text-white hover:bg-opacity-90;
+  }
+  .btn-outline {
+    @apply border-2 border-white text-white hover:bg-white hover:text-primary;
+  }
+  .btn-lg {
+    @apply px-6 py-3 text-lg;
+  }
+  .section-title {
+    @apply text-3xl font-bold text-center mb-4;
+  }
+  .section-subtitle {
+    @apply text-gray-600 text-center mb-8;
+  }
+} 

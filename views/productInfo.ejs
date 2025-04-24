@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <% const title = "MI-POD PRO + - PUFFSNMORE"; %>
+    <% const description = "Experience the premium MI-POD PRO + vape device with advanced features, sleek design, and outstanding performance."; %>
+    <%- include('partials/head') %>
+    
+    <!-- Swiper JS for Image Slider -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+    
+    <style>
+        /* Product Image Slider Styles */
+        .swiper {
+            width: 100%;
+            height: 100%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .swiper-slide {
+            text-align: center;
+            font-size: 18px;
+            background: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .swiper-slide img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        
+        .swiper-thumb {
+            height: 20%;
+            box-sizing: border-box;
+            padding: 10px 0;
+        }
+        
+        .swiper-thumb .swiper-slide {
+            width: 25%;
+            height: 100%;
+            opacity: 0.6;
+            cursor: pointer;
+        }
+        
+        .swiper-thumb .swiper-slide-thumb-active {
+            opacity: 1;
+            border: 2px solid #61235b;
+            border-radius: 8px;
+        }
+        
+        /* Quantity Selector */
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            overflow: hidden;
+            width: fit-content;
+        }
+        
+        .quantity-btn {
+            background-color: #f9fafb;
+            border: none;
+            color: #4b5563;
+            width: 36px;
+            height: 36px;
+            font-size: 1.25rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .quantity-btn:hover {
+            background-color: #e5e7eb;
+        }
+        
+        .quantity-input {
+            width: 40px;
+            border: none;
+            text-align: center;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+        
+        /* Product Info Box */
+        .product-info-box {
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            background-color: #f9fafb;
+        }
+        
+        /* Warning Box */
+        .warning-box {
+            background-color: #fef2f2;
+            border: 1px solid #fee2e2;
+            border-radius: 8px;
+        }
+        
+        /* Similar Products Carousel */
+        .similar-product {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .similar-product:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        
+        /* What's Included Image */
+        .included-image {
+            max-width: 320px;
+            margin: 0 auto;
+        }
+        
+        /* Related Products Slider */
+        .related-products-slider {
+            padding-bottom: 40px;
+            position: relative;
+        }
+        
+        .related-products-slider .swiper-pagination {
+            bottom: 0;
+        }
+        
+        .related-products-slider .swiper-button-next,
+        .related-products-slider .swiper-button-prev {
+            color: #61235b;
+            width: 35px;
+            height: 35px;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .related-products-slider .swiper-button-next:after,
+        .related-products-slider .swiper-button-prev:after {
+            font-size: 14px;
+            font-weight: bold;
+        }
+        
+        .related-products-slider .swiper-wrapper {
+            padding: 5px;
+        }
+
+        /* Related Products Grid - Keeping for fallback if JS fails */
+        .related-products-grid {
+            display: none;
+        }
+
+        /* Adjust height of the related product cards */
+        .related-product-card {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .related-product-card .product-image {
+            height: 120px;
+            padding: 0.5rem;
+        }
+        
+        @media (min-width: 640px) {
+            .related-product-card .product-image {
+                height: 160px;
+            }
+        }
+        
+        .related-product-card .product-info {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 0.5rem;
+        }
+        
+        .related-product-card .product-info h3 {
+            font-size: 0.875rem;
+        }
+        
+        @media (min-width: 640px) {
+            .related-product-card .product-info h3 {
+                font-size: 1rem;
+            }
+            .related-product-card .product-info {
+                padding: 1rem;
+            }
+        }
+        
+        .related-product-card .product-actions {
+            margin-top: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <%- include('partials/preloader') %>
+    <%- include('partials/header') %>
+
+    <main>
+        <!-- Breadcrumb Navigation -->
+        <div class="bg-gray-100 py-3">
+            <div class="container mx-auto px-4">
+                <div class="flex items-center text-sm">
+                    <a href="/" class="text-gray-600 hover:text-purple-700">Home</a>
+                    <span class="mx-2 text-gray-400">/</span>
+                    <a href="/products" class="text-gray-600 hover:text-purple-700">Products</a>
+                    <span class="mx-2 text-gray-400">/</span>
+                    <span class="text-purple-700 font-medium">MI-POD PRO +</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Product Details Section -->
+        <section class="py-12">
+            <div class="container mx-auto px-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                    <!-- Product Images -->
+                    <div>
+                        <!-- Main Swiper -->
+                        <div class="swiper mySwiper2 bg-white rounded-lg shadow mb-4 p-4" style="height: 400px;">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <img src="heroImage.png" alt="MI-POD PRO + Front View">
+                                </div>
+                                <div class="swiper-slide">
+                                    <img src="product5.jpg" alt="MI-POD PRO + Side View">
+                                </div>
+                                <div class="swiper-slide">
+                                    <img src="product2.jpg" alt="MI-POD PRO + Top View">
+                                </div>
+                                <div class="swiper-slide">
+                                    <img src="product3.jpg" alt="MI-POD PRO + with Pod">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Thumbs Swiper -->
+                        <div class="swiper mySwiper swiper-thumb">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <img src="heroImage.png" alt="MI-POD PRO + Front View">
+                                </div>
+                                <div class="swiper-slide">
+                                    <img src="product5.jpg" alt="MI-POD PRO + Side View">
+                                </div>
+                                <div class="swiper-slide">
+                                    <img src="product2.jpg" alt="MI-POD PRO + Top View">
+                                </div>
+                                <div class="swiper-slide">
+                                    <img src="product3.jpg" alt="MI-POD PRO + with Pod">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Product Info -->
+                    <div>
+                        <div class="mb-2 inline-block px-3 py-1 bg-purple-100 text-purple-800 text-xs font-medium rounded-full">BEST SELLER</div>
+                        <h1 class="text-3xl font-bold text-[#3b1a48] mb-2">SILVER VOYAGE MI-POD PRO +</h1>
+                        
+                        <!-- Rating -->
+                        <div class="flex items-center mb-4">
+                            <div class="flex">
+                                <i class="fas fa-star text-yellow-400"></i>
+                                <i class="fas fa-star text-yellow-400"></i>
+                                <i class="fas fa-star text-yellow-400"></i>
+                                <i class="fas fa-star text-yellow-400"></i>
+                                <i class="fas fa-star-half-alt text-yellow-400"></i>
+                            </div>
+                            <span class="ml-2 text-sm text-gray-600">4.7 (128 reviews)</span>
+                        </div>
+                        
+                        <!-- Price -->
+                        <div class="mb-6">
+                            <span class="text-2xl font-bold text-[#3b1a48] mr-2">₹2,999</span>
+                            <span class="text-lg text-gray-500 line-through">₹3,499</span>
+                            <span class="ml-2 bg-red-500 text-white text-xs px-2 py-1 rounded">SAVE ₹500</span>
+                        </div>
+                        
+                        <!-- Description -->
+                        <div class="mb-6">
+                            <p class="text-gray-700 mb-3">Experience premium vaping with the Mi-Pod PRO+. This sleek and stylish device offers maximum convenience with its compact design and powerful performance.</p>
+                            <p class="text-gray-700">Features a long-lasting battery, refillable pods, and simple draw-activated firing mechanism - perfect for both beginners and experienced vapers.</p>
+                        </div>
+                        
+                        <!-- Features List -->
+                        <div class="mb-6">
+                            <h3 class="font-bold text-[#3b1a48] mb-2">Key Features:</h3>
+                            <ul class="space-y-1 list-inside list-disc text-gray-700">
+                                <li>Premium aluminum design with glitter finish</li>
+                                <li>650mAh rechargeable battery</li>
+                                <li>2ml refillable pod capacity</li>
+                                <li>Draw activated mechanism</li>
+                                <li>Multiple safety protections</li>
+                            </ul>
+                        </div>
+                        
+                        <!-- Quantity Selector -->
+                        <div class="mb-6">
+                            <h3 class="font-bold text-[#3b1a48] mb-2">Quantity:</h3>
+                            <div class="quantity-selector">
+                                <button class="quantity-btn" onclick="decrementQuantity()">-</button>
+                                <input type="number" id="quantity" class="quantity-input" value="1" min="1" max="10">
+                                <button class="quantity-btn" onclick="incrementQuantity()">+</button>
+                            </div>
+                        </div>
+                        
+                        <!-- Add to Cart Button -->
+                        <div class="mb-6 flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-3">
+                            <button class="bg-[#61235b] hover:bg-[#4d1c49] text-white px-6 py-3 rounded-full flex-1 flex items-center justify-center">
+                                <i class="fas fa-shopping-cart mr-2"></i>
+                                Add to Cart
+                            </button>
+                            <button class="bg-black hover:bg-gray-900 text-white px-6 py-3 rounded-full flex-1 flex items-center justify-center">
+                                Buy Now
+                            </button>
+                        </div>
+                        
+                        <!-- In Stock -->
+                        <div class="flex items-center text-green-600 mb-6">
+                            <i class="fas fa-check-circle mr-2"></i>
+                            <span>In Stock - Ready to Ship</span>
+                        </div>
+                        
+                        <!-- Product Info Boxes -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+                            <div class="product-info-box p-3 flex items-center">
+                                <div class="bg-[#61235b] p-2 rounded-full text-white mr-3">
+                                    <i class="fas fa-truck"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-sm">Free Shipping</h4>
+                                    <p class="text-xs text-gray-600">On orders over ₹1999</p>
+                                </div>
+                            </div>
+                            
+                            <div class="product-info-box p-3 flex items-center">
+                                <div class="bg-[#61235b] p-2 rounded-full text-white mr-3">
+                                    <i class="fas fa-shield-alt"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-sm">Secure Payment</h4>
+                                    <p class="text-xs text-gray-600">100% secure payment</p>
+                                </div>
+                            </div>
+                            
+                            <div class="product-info-box p-3 flex items-center">
+                                <div class="bg-[#61235b] p-2 rounded-full text-white mr-3">
+                                    <i class="fas fa-undo"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-sm">Easy Returns</h4>
+                                    <p class="text-xs text-gray-600">10 day return policy</p>
+                                </div>
+                            </div>
+                            
+                            <div class="product-info-box p-3 flex items-center">
+                                <div class="bg-[#61235b] p-2 rounded-full text-white mr-3">
+                                    <i class="fas fa-headset"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-sm">24/7 Support</h4>
+                                    <p class="text-xs text-gray-600">Call us anytime</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- What's Included Section -->
+        <section class="py-10 bg-gray-50">
+            <div class="container mx-auto px-4">
+                <h2 class="text-2xl font-bold text-center text-[#3b1a48] mb-10">WHAT'S INCLUDED</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div class="flex justify-center">
+                        <img src="product2.jpg" alt="MI-POD PRO Kit Contents" class="included-image rounded-lg shadow-lg">
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-xl font-bold text-[#3b1a48] mb-4">EACH MI-POD PRO + KIT INCLUDES:</h3>
+                        <ul class="space-y-4">
+                            <li class="flex items-start">
+                                <span class="text-[#61235b] mr-3">•</span>
+                                <span>1x Mi-Pod PRO + Device</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-[#61235b] mr-3">•</span>
+                                <span>2x Mi-Pod PRO Pods</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-[#61235b] mr-3">•</span>
+                                <span>2x Mi-Pod Lanyard Connectors</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-[#61235b] mr-3">•</span>
+                                <span>1x USB-C Charger</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-[#61235b] mr-3">•</span>
+                                <span>1x User Manual</span>
+                            </li>
+                        </ul>
+                        
+                        <div class="mt-6">
+                            <a href="#" class="text-[#61235b] hover:text-purple-700 flex items-center">
+                                VIEW THE USER MANUAL
+                                <i class="fas fa-chevron-right ml-2 text-sm"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Warning Section -->
+        <section class="py-10">
+            <div class="container mx-auto px-4">
+                <div class="warning-box p-6">
+                    <div class="flex items-center mb-4">
+                        <div class="mr-4">
+                            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0OCIgaGVpZ2h0PSI0OCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNkYzI2MjYiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj48cGF0aCBkPSJNMTAgMTRhMy41IDMuNSAwIDAgMCA1IDBNMTQuNSA4LjVoLjAxTTkuNSA4LjVoLjAxTTIyIDEyYTEwIDEwIDAgMSAxLTIwIDAgMTAgMTAgMCAwIDEgMjAgMHoiLz48L3N2Zz4=" alt="Warning" class="w-12 h-12">
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-bold text-red-700">WARNING</h3>
+                            <p class="text-red-700">This product contains nicotine. Nicotine is an addictive chemical.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="pl-16">
+                        <p class="text-gray-700 mb-4">WARNING: This product can expose you to chemicals including nicotine, which is known to be harmful in the State of California to cause birth defects or other reproductive harm. For more information, go to www.P65Warnings.ca.gov.</p>
+                        
+                        <p class="text-gray-700">This product contains propylene glycol. Some people may have mild allergic reactions to propylene glycol that leaves them with a scratchy throat.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Similar Products Section -->
+        <section class="py-12 bg-gray-50">
+            <div class="container mx-auto px-4">
+                <h2 class="text-2xl font-bold text-center text-[#3b1a48] mb-8">RELATED PRODUCTS</h2>
+                
+                <!-- Swiper slider for related products -->
+                <div class="related-products-slider">
+                    <div class="swiper relatedSwiper">
+                        <div class="swiper-wrapper">
+                            <!-- Similar Product 1 -->
+                            <div class="swiper-slide p-1">
+                                <div class="similar-product related-product-card bg-white rounded-lg overflow-hidden shadow">
+                                    <div class="relative product-image">
+                                        <img src="product5.jpg" alt="Blue Voyage Mi-Pod Pro" class="w-full h-full object-contain">
+                                        <div class="absolute top-2 right-2 bg-blue-500 text-white text-xs px-2 py-1 rounded-full">NEW</div>
+                                    </div>
+                                    <div class="product-info">
+                                        <h3 class="font-bold text-[#3b1a48] mb-1">BLUE MI-POD PRO</h3>
+                                        <div class="flex justify-between items-center product-actions">
+                                            <span class="font-bold text-[#3b1a48] text-sm">₹2,999</span>
+                                            <button class="bg-[#61235b] hover:bg-[#4d1c49] text-white p-1.5 rounded-full">
+                                                <i class="fas fa-shopping-cart text-xs"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Similar Product 2 -->
+                            <div class="swiper-slide p-1">
+                                <div class="similar-product related-product-card bg-white rounded-lg overflow-hidden shadow">
+                                    <div class="relative product-image">
+                                        <img src="product1.jpg" alt="PINK VOYAGE MI-POD PRO" class="w-full h-full object-contain">
+                                        <div class="absolute top-2 right-2 bg-pink-500 text-white text-xs px-2 py-1 rounded-full">HOT</div>
+                                    </div>
+                                    <div class="product-info">
+                                        <h3 class="font-bold text-[#3b1a48] mb-1">PINK MI-POD PRO</h3>
+                                        <div class="flex justify-between items-center product-actions">
+                                            <span class="font-bold text-[#3b1a48] text-sm">₹2,999</span>
+                                            <button class="bg-[#61235b] hover:bg-[#4d1c49] text-white p-1.5 rounded-full">
+                                                <i class="fas fa-shopping-cart text-xs"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Similar Product 3 -->
+                            <div class="swiper-slide p-1">
+                                <div class="similar-product related-product-card bg-white rounded-lg overflow-hidden shadow">
+                                    <div class="relative product-image">
+                                        <img src="product6.jpg" alt="SOUR BLUE APPLE EVO" class="w-full h-full object-contain">
+                                    </div>
+                                    <div class="product-info">
+                                        <h3 class="font-bold text-[#3b1a48] mb-1">SOUR BLUE APPLE</h3>
+                                        <div class="flex justify-between items-center product-actions">
+                                            <span class="font-bold text-[#3b1a48] text-sm">₹1,499</span>
+                                            <button class="bg-[#61235b] hover:bg-[#4d1c49] text-white p-1.5 rounded-full">
+                                                <i class="fas fa-shopping-cart text-xs"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Similar Product 4 -->
+                            <div class="swiper-slide p-1">
+                                <div class="similar-product related-product-card bg-white rounded-lg overflow-hidden shadow">
+                                    <div class="relative product-image">
+                                        <img src="product3.jpg" alt="E-Liquid" class="w-full h-full object-contain">
+                                        <div class="absolute top-2 right-2 bg-red-500 text-white text-xs px-2 py-1 rounded-full">SALE</div>
+                                    </div>
+                                    <div class="product-info">
+                                        <h3 class="font-bold text-[#3b1a48] mb-1">MOTHER'S MILK</h3>
+                                        <div class="flex justify-between items-center product-actions">
+                                            <div>
+                                                <span class="font-bold text-[#3b1a48] text-sm">₹1,199</span>
+                                            </div>
+                                            <button class="bg-[#61235b] hover:bg-[#4d1c49] text-white p-1.5 rounded-full">
+                                                <i class="fas fa-shopping-cart text-xs"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Similar Product 5 -->
+                            <div class="swiper-slide p-1">
+                                <div class="similar-product related-product-card bg-white rounded-lg overflow-hidden shadow">
+                                    <div class="relative product-image">
+                                        <img src="heroImage.png" alt="Disposable Vape" class="w-full h-full object-contain">
+                                        <div class="absolute top-2 right-2 bg-green-500 text-white text-xs px-2 py-1 rounded-full">NEW</div>
+                                    </div>
+                                    <div class="product-info">
+                                        <h3 class="font-bold text-[#3b1a48] mb-1">VOZOL 15000</h3>
+                                        <div class="flex justify-between items-center product-actions">
+                                            <span class="font-bold text-[#3b1a48] text-sm">₹1,799</span>
+                                            <button class="bg-[#61235b] hover:bg-[#4d1c49] text-white p-1.5 rounded-full">
+                                                <i class="fas fa-shopping-cart text-xs"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Similar Product 6 -->
+                            <div class="swiper-slide p-1">
+                                <div class="similar-product related-product-card bg-white rounded-lg overflow-hidden shadow">
+                                    <div class="relative product-image">
+                                        <img src="product2.jpg" alt="Pod System" class="w-full h-full object-contain">
+                                        <div class="absolute top-2 right-2 bg-purple-500 text-white text-xs px-2 py-1 rounded-full">HOT</div>
+                                    </div>
+                                    <div class="product-info">
+                                        <h3 class="font-bold text-[#3b1a48] mb-1">LOST VAPE URSA</h3>
+                                        <div class="flex justify-between items-center product-actions">
+                                            <span class="font-bold text-[#3b1a48] text-sm">₹2,499</span>
+                                            <button class="bg-[#61235b] hover:bg-[#4d1c49] text-white p-1.5 rounded-full">
+                                                <i class="fas fa-shopping-cart text-xs"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Similar Product 7 -->
+                            <div class="swiper-slide p-1">
+                                <div class="similar-product related-product-card bg-white rounded-lg overflow-hidden shadow">
+                                    <div class="relative product-image">
+                                        <img src="product10.jpg" alt="Salt Nic" class="w-full h-full object-contain">
+                                    </div>
+                                    <div class="product-info">
+                                        <h3 class="font-bold text-[#3b1a48] mb-1">SALT NIC JUICE</h3>
+                                        <div class="flex justify-between items-center product-actions">
+                                            <span class="font-bold text-[#3b1a48] text-sm">₹899</span>
+                                            <button class="bg-[#61235b] hover:bg-[#4d1c49] text-white p-1.5 rounded-full">
+                                                <i class="fas fa-shopping-cart text-xs"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Similar Product 8 -->
+                            <div class="swiper-slide p-1">
+                                <div class="similar-product related-product-card bg-white rounded-lg overflow-hidden shadow">
+                                    <div class="relative product-image">
+                                        <img src="vape90.webp" alt="Vape Kit" class="w-full h-full object-contain">
+                                        <div class="absolute top-2 right-2 bg-red-500 text-white text-xs px-2 py-1 rounded-full">SALE</div>
+                                    </div>
+                                    <div class="product-info">
+                                        <h3 class="font-bold text-[#3b1a48] mb-1">GEEK VAPE</h3>
+                                        <div class="flex justify-between items-center product-actions">
+                                            <div>
+                                                <span class="font-bold text-[#3b1a48] text-sm">₹3,499</span>
+                                            </div>
+                                            <button class="bg-[#61235b] hover:bg-[#4d1c49] text-white p-1.5 rounded-full">
+                                                <i class="fas fa-shopping-cart text-xs"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Add pagination -->
+                        <div class="swiper-pagination"></div>
+                        
+                        <!-- Add navigation arrows -->
+                        <div class="swiper-button-next"></div>
+                        <div class="swiper-button-prev"></div>
+                    </div>
+                </div>
+                
+                <!-- Fallback grid if JS disabled - hidden by default -->
+                <div class="related-products-grid">
+                    <!-- Grid items identical to slider items, hidden by default -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <%- include('partials/footer') %>
+    
+    <!-- Product Image Slider Script -->
+    <script>
+        // Quantity Selector
+        function incrementQuantity() {
+            const input = document.getElementById('quantity');
+            const currentValue = parseInt(input.value);
+            if (currentValue < 10) {
+                input.value = currentValue + 1;
+            }
+        }
+        
+        function decrementQuantity() {
+            const input = document.getElementById('quantity');
+            const currentValue = parseInt(input.value);
+            if (currentValue > 1) {
+                input.value = currentValue - 1;
+            }
+        }
+        
+        // Initialize Swiper
+        document.addEventListener('DOMContentLoaded', function() {
+            var swiper = new Swiper(".mySwiper", {
+                spaceBetween: 10,
+                slidesPerView: 4,
+                freeMode: true,
+                watchSlidesProgress: true,
+            });
+            
+            var swiper2 = new Swiper(".mySwiper2", {
+                spaceBetween: 10,
+                navigation: {
+                    nextEl: ".swiper-button-next",
+                    prevEl: ".swiper-button-prev",
+                },
+                thumbs: {
+                    swiper: swiper,
+                },
+            });
+            
+            // Initialize Swiper for Related Products - with grid setup
+            var relatedSwiper = new Swiper(".relatedSwiper", {
+                slidesPerView: 3,
+                grid: {
+                    rows: 2,
+                    fill: 'row'
+                },
+                spaceBetween: 10,
+                pagination: {
+                    el: ".swiper-pagination",
+                    clickable: true,
+                },
+                navigation: {
+                    nextEl: ".swiper-button-next",
+                    prevEl: ".swiper-button-prev",
+                },
+                breakpoints: {
+                    320: {
+                        slidesPerView: 3,
+                        grid: {
+                            rows: 2
+                        },
+                        spaceBetween: 8
+                    },
+                    640: {
+                        slidesPerView: 3,
+                        grid: {
+                            rows: 2
+                        },
+                        spaceBetween: 10
+                    },
+                    768: {
+                        slidesPerView: 4,
+                        grid: {
+                            rows: 2
+                        },
+                        spaceBetween: 15
+                    }
+                },
+                // Enable grabCursor for better mobile experience
+                grabCursor: true,
+                // No loop for grid layout
+                loop: false
+            });
+        });
+    </script>
+</body>
+</html> 

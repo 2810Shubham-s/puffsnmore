@@ -1,0 +1,107 @@
+<!-- Enhanced Preloader -->
+<div class="preloader">
+    <div class="preloader-content">
+        <div class="cloud-container">
+            <!-- Smoke/vapor elements -->
+            <div class="smoke smoke-1"></div>
+            <div class="smoke smoke-2"></div>
+            <div class="smoke smoke-3"></div>
+            <div class="smoke smoke-4"></div>
+            <div class="smoke smoke-5"></div>
+            
+            <!-- Logo -->
+            <img src="pups logo.png" alt="PUFFSNMORE" class="preloader-logo">
+        </div>
+        
+        <div class="loading-text">LOADING</div>
+        <div class="progress-container">
+            <div class="progress-bar"></div>
+        </div>
+    </div>
+</div>
+
+<!-- Preloader Animation Script -->
+<script>
+    // Enhanced Preloader Animation with GSAP
+    window.addEventListener('load', function() {
+        const preloader = document.querySelector('.preloader');
+        const preloaderContent = document.querySelector('.preloader-content');
+        const preloaderLogo = document.querySelector('.preloader-logo');
+        const progressBar = document.querySelector('.progress-bar');
+        const loadingText = document.querySelector('.loading-text');
+        const smokeElements = document.querySelectorAll('.smoke');
+        
+        // Initial smoke animation timeline
+        const smokeTl = gsap.timeline({repeat: -1, yoyo: true});
+        
+        // Animate each smoke element with different durations and delays
+        smokeElements.forEach((smoke, index) => {
+            const duration = 2 + Math.random() * 2; // Random duration between 2-4s
+            const delay = index * 0.3; // Staggered delay
+            const yMovement = -50 - Math.random() * 50; // Random upward movement
+            
+            smokeTl.to(smoke, {
+                opacity: 0.6,
+                y: yMovement,
+                x: Math.random() * 30 - 15, // Random horizontal drift
+                scale: 1.5 + Math.random(), 
+                duration: duration,
+                delay: delay,
+                ease: "power1.out"
+            }, 0);
+            
+            smokeTl.to(smoke, {
+                opacity: 0,
+                duration: duration * 0.6,
+                delay: delay + duration * 0.4,
+                ease: "power2.in"
+            }, 0);
+        });
+        
+        // Logo animation
+        gsap.fromTo(preloaderLogo, 
+            {scale: 0.8, opacity: 0, y: 30},
+            {scale: 1, opacity: 1, y: 0, duration: 1, ease: "back.out(1.7)"}
+        );
+        
+        // Simulate loading progress
+        gsap.to(progressBar, {
+            width: "100%", 
+            duration: 3, 
+            ease: "power1.inOut",
+            onUpdate: function() {
+                // Get progress value (0 to 1)
+                const progress = this.progress();
+                
+                // Pulse the loading text based on progress
+                if (progress < 1) {
+                    gsap.to(loadingText, {
+                        scale: 1 + Math.sin(progress * Math.PI * 8) * 0.05,
+                        duration: 0.1
+                    });
+                }
+            }
+        });
+        
+        // After loading completes, animate out
+        setTimeout(() => {
+            // Fade out the preloader content first
+            gsap.to(preloaderContent, {
+                opacity: 0,
+                y: -20,
+                duration: 0.8,
+                ease: "power2.inOut"
+            });
+            
+            // Then fade out the entire preloader with a slight delay
+            gsap.to(preloader, {
+                opacity: 0,
+                duration: 0.8,
+                delay: 0.3,
+                onComplete: () => {
+                    preloader.style.display = 'none';
+                }
+            });
+        }, 3500);
+    });
+</script> 

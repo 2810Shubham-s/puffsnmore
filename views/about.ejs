@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <% const title = "About Us - PUFFSNMORE"; %>
+    <% const description = "Learn about PUFFSNMORE, your premium destination for high-quality vape products and accessories in Patna, Bihar."; %>
+    <%- include('partials/head') %>
+</head>
+<body>
+    <%- include('partials/preloader') %>
+
+    <%- include('partials/header') %>
+
+    <main>
+        <!-- About Header -->
+        <section class="py-20 bg-gradient-to-b from-purple-50 to-purple-100">
+            <div class="container mx-auto px-4 text-center">
+                <h1 class="text-4xl font-bold text-[#3b1a48] mb-6">About PUFFSNMORE</h1>
+                <p class="text-lg max-w-3xl mx-auto text-gray-600">Your premium destination for high-quality vape products and accessories in Patna, Bihar.</p>
+            </div>
+        </section>
+
+        <!-- Our Story -->
+        <section class="py-16 bg-white">
+            <div class="container mx-auto px-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <h2 class="text-3xl font-bold mb-6 text-purple-900">Our Story</h2>
+                        <p class="text-gray-600 mb-4">PUFFSNMORE was founded in 2020 with a simple mission: to provide premium quality vape products with exceptional customer service to our community.</p>
+                        <p class="text-gray-600 mb-4">What started as a small passion project has quickly grown into one of the most trusted vape retailers in the region. We pride ourselves on offering only carefully selected, authentic products from the most reputable brands in the industry.</p>
+                        <p class="text-gray-600">Our dedication to customer satisfaction, product knowledge, and building lasting relationships with our clients has helped us establish a loyal customer base who trust us for all their vaping needs.</p>
+                    </div>
+                    <div class="relative">
+                        <img src="storefront.jpg" alt="PUFFSNMORE Store" class="rounded-lg shadow-xl w-full h-auto object-cover">
+                        <div class="absolute -bottom-6 -left-6 w-32 h-32 bg-purple-600 rounded-lg z-0"></div>
+                        <div class="absolute -top-6 -right-6 w-32 h-32 bg-yellow-400 rounded-lg z-0"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Choose Us -->
+        <section class="py-16 bg-purple-50">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold text-center mb-12 text-purple-900">Why Choose PUFFSNMORE</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Quality -->
+                    <div class="bg-white p-8 rounded-lg shadow-md">
+                        <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mb-6 mx-auto">
+                            <i class="fas fa-award text-2xl text-purple-600"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-center mb-4 text-purple-900">Premium Quality</h3>
+                        <p class="text-center text-gray-600">We personally test and evaluate every product before offering it to our customers, ensuring only the highest quality items make it to our shelves.</p>
+                    </div>
+                    
+                    <!-- Authenticity -->
+                    <div class="bg-white p-8 rounded-lg shadow-md">
+                        <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mb-6 mx-auto">
+                            <i class="fas fa-certificate text-2xl text-purple-600"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-center mb-4 text-purple-900">100% Authentic</h3>
+                        <p class="text-center text-gray-600">We only source our products directly from authorized distributors and manufacturers, guaranteeing authenticity and safety.</p>
+                    </div>
+                    
+                    <!-- Customer Service -->
+                    <div class="bg-white p-8 rounded-lg shadow-md">
+                        <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mb-6 mx-auto">
+                            <i class="fas fa-headset text-2xl text-purple-600"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-center mb-4 text-purple-900">Expert Support</h3>
+                        <p class="text-center text-gray-600">Our knowledgeable staff is always ready to assist you with product recommendations, usage guidance, and responsive customer service.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Our Team -->
+        <section class="py-16 bg-white">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold text-center mb-12 text-purple-900">Meet Our Team</h2>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Team Member 1 -->
+                    <div class="bg-purple-50 rounded-lg overflow-hidden text-center transform hover:scale-105 transition-transform duration-300">
+                        <div class="h-64 bg-purple-100">
+                            <img src="team1.jpg" alt="Rahul Singh - Founder" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-purple-900">Rahul Singh</h3>
+                            <p class="text-purple-600 mb-3">Founder & CEO</p>
+                            <p class="text-gray-600 text-sm">Vaping enthusiast with over 10 years of experience in the industry.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Team Member 2 -->
+                    <div class="bg-purple-50 rounded-lg overflow-hidden text-center transform hover:scale-105 transition-transform duration-300">
+                        <div class="h-64 bg-purple-100">
+                            <img src="team2.jpg" alt="Priya Sharma - Manager" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-purple-900">Priya Sharma</h3>
+                            <p class="text-purple-600 mb-3">Store Manager</p>
+                            <p class="text-gray-600 text-sm">Expert in customer relations and product knowledge with a passion for quality.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Team Member 3 -->
+                    <div class="bg-purple-50 rounded-lg overflow-hidden text-center transform hover:scale-105 transition-transform duration-300">
+                        <div class="h-64 bg-purple-100">
+                            <img src="team3.jpg" alt="Vikram Patel - Product Specialist" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-purple-900">Vikram Patel</h3>
+                            <p class="text-purple-600 mb-3">Product Specialist</p>
+                            <p class="text-gray-600 text-sm">Dedicated to finding the perfect product match for every customer.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Team Member 4 -->
+                    <div class="bg-purple-50 rounded-lg overflow-hidden text-center transform hover:scale-105 transition-transform duration-300">
+                        <div class="h-64 bg-purple-100">
+                            <img src="team4.jpg" alt="Ananya Gupta - Customer Support" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-purple-900">Ananya Gupta</h3>
+                            <p class="text-purple-600 mb-3">Customer Support</p>
+                            <p class="text-gray-600 text-sm">Committed to providing exceptional service and resolving customer inquiries.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact CTA -->
+        <section class="py-16 bg-gradient-to-r from-purple-600 to-indigo-700 text-white">
+            <div class="container mx-auto px-4 text-center">
+                <h2 class="text-3xl font-bold mb-6">Have Questions?</h2>
+                <p class="max-w-2xl mx-auto mb-8 text-white/80">Our team is always ready to help you find the perfect product for your needs. Feel free to reach out to us anytime.</p>
+                <a href="#contact" class="inline-flex items-center bg-white text-purple-700 px-8 py-3 rounded-full font-medium hover:bg-yellow-400 transition-colors">
+                    Contact Us
+                    <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <%- include('partials/footer') %>
+</body>
+</html> 

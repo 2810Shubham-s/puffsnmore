@@ -1,0 +1,244 @@
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title><%= typeof title !== 'undefined' ? title : 'GlowUp Beauty - Premium Beauty Products' %></title>
+<meta name="description" content="<%= typeof description !== 'undefined' ? description : 'Discover premium beauty products at GlowUp Beauty. Shop our curated collections of skincare, makeup, and body care.' %>">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<!-- Tailwind Play CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                colors: {
+                    primary: '#000000',
+                    secondary: '#ffffff',
+                    dark: {
+                        primary: '#000000',
+                        secondary: '#1a1a1a'
+                    }
+                },
+                screens: {
+                    'xs': '480px',
+                }
+            }
+        }
+    }
+</script>
+
+<!-- Custom styles -->
+<style type="text/tailwind">
+    @layer base {
+        :root {
+            --theme-primary: #000000;
+            --theme-secondary: #ffffff;
+        }
+
+        /* Add header spacer height */
+        .header-spacer {
+            height: 64px; /* Match header height */
+        }
+    }
+    
+    @layer components {
+        .theme-primary {
+            @apply bg-black text-white;
+        }
+        
+        .theme-secondary {
+            @apply bg-white text-black;
+        }
+        
+        .theme-surface {
+            @apply bg-white;
+        }
+        
+        .btn-primary {
+            @apply bg-black text-white hover:bg-gray-900 transition-colors;
+        }
+        
+        .btn-secondary {
+            @apply bg-white text-black border border-black hover:bg-gray-100 transition-colors;
+        }
+
+        .nav-link {
+            @apply text-white hover:text-gray-300 transition-colors;
+        }
+
+        .product-card {
+            @apply bg-white hover:shadow-xl transition-all duration-300;
+        }
+
+        .section-title {
+            @apply text-3xl font-bold text-center mb-4;
+        }
+    }
+</style>
+<style>
+    /* Fix for mobile menu button id conflict */
+    #open-menu {
+        display: block;
+        color: #dfc450;
+    }
+    .md\:hidden {
+        display: block;
+    }
+    @media (min-width: 768px) {
+        .md\:hidden {
+            display: none;
+        }
+    }
+
+    /* Mobile optimizations */
+    @media (max-width: 640px) {
+        .warning-text {
+            font-size: 0.875rem;
+        }
+        .warning-title {
+            font-size: 1rem;
+        }
+        .logo-container img {
+            height: 6rem;
+        }
+        .newsletter-form {
+            flex-direction: column;
+        }
+        .newsletter-form button {
+            margin-top: 0.5rem;
+            width: 100%;
+        }
+        .footer-grid {
+            gap: 2rem;
+        }
+    }
+
+    /* Fix for overflow issues on mobile */
+    body {
+        overflow-x: hidden;
+        width: 100%;
+    }
+
+    /* Improve tap targets for mobile */
+    @media (max-width: 640px) {
+        button, a {
+            min-height: 44px;
+            min-width: 44px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+</style>
+<style>
+    /* Enhanced Preloader Styles */
+    .preloader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, #61235b 0%, #3b1a48 100%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+        opacity: 1;
+        visibility: visible;
+        overflow: hidden;
+    }
+
+    .preloader-content {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
+    }
+
+    .preloader-logo {
+        position: relative;
+        max-width: 180px;
+        filter: drop-shadow(0 0 8px rgba(223, 196, 80, 0.6));
+        z-index: 2;
+    }
+
+    .cloud-container {
+        position: relative;
+        width: 200px;
+        height: 200px;
+    }
+
+    /* Animated smoke/vapor effect */
+    .smoke {
+        position: absolute;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.4);
+        filter: blur(10px);
+        opacity: 0;
+        z-index: 1;
+    }
+
+    .smoke-1 {
+        width: 20px;
+        height: 20px;
+        top: 70%;
+        left: 30%;
+    }
+
+    .smoke-2 {
+        width: 35px;
+        height: 35px;
+        top: 50%;
+        left: 15%;
+    }
+
+    .smoke-3 {
+        width: 25px;
+        height: 25px;
+        top: 55%;
+        left: 60%;
+    }
+
+    .smoke-4 {
+        width: 30px;
+        height: 30px;
+        top: 45%;
+        right: 20%;
+    }
+
+    .smoke-5 {
+        width: 15px;
+        height: 15px;
+        top: 60%;
+        right: 30%;
+    }
+
+    /* Loading text */
+    .loading-text {
+        color: #dfc450;
+        font-size: 1.2rem;
+        font-weight: bold;
+        letter-spacing: 0.2rem;
+        margin-top: 1.5rem;
+    }
+
+    /* Progress bar */
+    .progress-container {
+        width: 200px;
+        height: 6px;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 10px;
+        overflow: hidden;
+        margin-top: 1rem;
+    }
+
+    .progress-bar {
+        height: 100%;
+        width: 0%;
+        background: #dfc450;
+        border-radius: 10px;
+    }
+</style>
+
+<!-- Fonts -->
+<!-- GSAP CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script> 

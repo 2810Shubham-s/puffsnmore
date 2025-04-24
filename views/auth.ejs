@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PUFFSNMORE - Login or Sign Up</title>
+    <meta name="description" content="Join PUFFSNMORE. Login or create an account to access exclusive deals and track your orders.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/favicon.png">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    
+    <style>
+        body {
+            background: linear-gradient(135deg, #f5f1ff 0%, #e2d8f8 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .auth-container {
+            width: 100%;
+            max-width: 460px;
+            padding: 2rem;
+        }
+        
+        .auth-card {
+            background: white;
+            border-radius: 1.25rem;
+            box-shadow: 0 10px 40px rgba(59, 26, 72, 0.1);
+            overflow: hidden;
+            width: 100%;
+        }
+        
+        .brand-logo {
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .auth-header {
+            padding: 1.5rem 2rem 0;
+        }
+        
+        .auth-tab {
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+        }
+        
+        .auth-tab-slider {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 3px;
+            transition: transform 0.3s ease;
+            background: #61235b;
+        }
+        
+        .auth-tab-slider.login {
+            width: 50%;
+            transform: translateX(0);
+        }
+        
+        .auth-tab-slider.signup {
+            width: 50%;
+            transform: translateX(100%);
+        }
+        
+        .auth-content {
+            overflow: hidden;
+        }
+        
+        .auth-form-container {
+            display: flex;
+            transition: transform 0.3s ease;
+            width: 200%;
+        }
+        
+        .auth-form-container.login {
+            transform: translateX(0);
+        }
+        
+        .auth-form-container.signup {
+            transform: translateX(-50%);
+        }
+        
+        .auth-form {
+            width: 50%;
+            padding: 0 2rem 2rem;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            border: 1px solid #e2e8f0;
+            background-color: #f8fafc;
+            transition: all 0.2s;
+            font-size: 0.95rem;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: #61235b;
+            box-shadow: 0 0 0 3px rgba(97, 35, 91, 0.1);
+            background-color: white;
+        }
+        
+        .social-login-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            border: 1px solid #e2e8f0;
+            background-color: white;
+            transition: all 0.2s;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+        
+        .social-login-btn:hover {
+            background-color: #f8fafc;
+            border-color: #cbd5e1;
+        }
+        
+        .auth-btn {
+            width: 100%;
+            background-color: #61235b;
+            color: white;
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: all 0.2s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .auth-btn:hover {
+            background-color: #4e1c49;
+        }
+        
+        .auth-link {
+            color: #61235b;
+            font-weight: 500;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        
+        .auth-link:hover {
+            color: #4e1c49;
+            text-decoration: underline;
+        }
+        
+        .footer-text {
+            text-align: center;
+            margin-top: 2rem;
+            font-size: 0.875rem;
+            color: rgba(97, 35, 91, 0.8);
+        }
+        
+        .footer-text a {
+            color: #61235b;
+            font-weight: 500;
+        }
+        
+        .footer-text a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Label animations */
+        .form-group {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="auth-container">
+        <div class="brand-logo">
+            <img src="/pups logo.png" alt="PUFFSNMORE" class="h-32 mx-auto">
+            <p class="text-yellow-800 font-medium text-center mt-2 italic tracking-wide">MORE PUFF. MORE FLAVOR. MORE FUN</p>
+        </div>
+        
+        <div class="auth-card">
+            <div class="auth-header">
+                <h1 class="text-2xl font-bold text-center text-gray-800 mb-2">Welcome to PUFFSNMORE</h1>
+                <p class="text-sm text-center text-gray-500 mb-6">Please login or create an account to continue</p>
+            </div>
+            
+            <!-- Auth Tabs -->
+            <div class="auth-tab">
+                <div class="flex">
+                    <button id="loginTab" class="w-1/2 py-4 text-center font-bold text-gray-800 focus:outline-none active">Login</button>
+                    <button id="signupTab" class="w-1/2 py-4 text-center font-bold text-gray-500 focus:outline-none">Sign Up</button>
+                </div>
+                <div class="auth-tab-slider login"></div>
+            </div>
+            
+            <!-- Auth Content -->
+            <div class="auth-content">
+                <div class="auth-form-container login">
+                    <!-- Login Form -->
+                    <div class="auth-form">
+                        <form id="loginForm" action="/login" method="POST">
+                            <div class="form-group">
+                                <label for="loginEmail" class="block text-gray-700 mb-2 text-sm font-medium">Email Address</label>
+                                <input type="email" id="loginEmail" name="email" class="form-input" placeholder="Enter your email" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <div class="flex justify-between mb-2">
+                                    <label for="loginPassword" class="block text-gray-700 text-sm font-medium">Password</label>
+                                    <a href="/forgot-password" class="text-xs text-purple-600 hover:text-purple-800">Forgot Password?</a>
+                                </div>
+                                <input type="password" id="loginPassword" name="password" class="form-input" placeholder="Enter your password" required>
+                            </div>
+                            
+                            <div class="mb-5">
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="rounded text-purple-600 mr-2 h-4 w-4">
+                                    <span class="text-gray-700 text-sm">Remember me</span>
+                                </label>
+                            </div>
+                            
+                            <button type="submit" class="auth-btn mb-5">Login</button>
+                            
+                            <div class="relative my-5">
+                                <div class="absolute inset-0 flex items-center">
+                                    <div class="w-full border-t border-gray-300"></div>
+                                </div>
+                                <div class="relative flex justify-center">
+                                    <span class="px-3 bg-white text-gray-500 text-xs">or continue with</span>
+                                </div>
+                            </div>
+                            
+                            <button type="button" class="social-login-btn">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 48 48">
+                                    <path fill="#FFC107" d="M43.611 20.083H42V20H24v8h11.303c-1.649 4.657-6.08 8-11.303 8c-6.627 0-12-5.373-12-12s5.373-12 12-12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4C12.955 4 4 12.955 4 24s8.955 20 20 20s20-8.955 20-20c0-1.341-.138-2.65-.389-3.917z"/>
+                                    <path fill="#FF3D00" d="m6.306 14.691 6.571 4.819C14.655 15.108 18.961 12 24 12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4 16.318 4 9.656 8.337 6.306 14.691z"/>
+                                    <path fill="#4CAF50" d="M24 44c5.166 0 9.86-1.977 13.409-5.192l-6.19-5.238A11.91 11.91 0 0 1 24 36c-5.202 0-9.619-3.317-11.283-7.946l-6.522 5.025C9.505 39.556 16.227 44 24 44z"/>
+                                    <path fill="#1976D2" d="M43.611 20.083H42V20H24v8h11.303a12.04 12.04 0 0 1-4.087 5.571l.003-.002l6.19 5.238C36.971 39.205 44 34 44 24c0-1.341-.138-2.65-.389-3.917z"/>
+                                </svg>
+                                <span>Continue with Google</span>
+                            </button>
+                        </form>
+                    </div>
+                    
+                    <!-- Signup Form -->
+                    <div class="auth-form">
+                        <form id="signupForm" action="/signup" method="POST">
+                            <div class="form-group">
+                                <label for="signupName" class="block text-gray-700 mb-2 text-sm font-medium">Full Name</label>
+                                <input type="text" id="signupName" name="name" class="form-input" placeholder="Enter your full name" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="signupEmail" class="block text-gray-700 mb-2 text-sm font-medium">Email Address</label>
+                                <input type="email" id="signupEmail" name="email" class="form-input" placeholder="Enter your email" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="signupPassword" class="block text-gray-700 mb-2 text-sm font-medium">Password</label>
+                                <input type="password" id="signupPassword" name="password" class="form-input" placeholder="Create a password" required>
+                                <p class="mt-1 text-xs text-gray-500">Must be at least 8 characters with numbers and special characters</p>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="signupConfirmPassword" class="block text-gray-700 mb-2 text-sm font-medium">Confirm Password</label>
+                                <input type="password" id="signupConfirmPassword" name="confirmPassword" class="form-input" placeholder="Confirm your password" required>
+                            </div>
+                            
+                            <div class="mb-5">
+                                <label class="flex items-start">
+                                    <input type="checkbox" class="rounded text-purple-600 mt-1 mr-2 h-4 w-4" required>
+                                    <span class="text-gray-700 text-xs">By signing up, you agree to our <a href="#" class="auth-link">Terms of Service</a> and <a href="#" class="auth-link">Privacy Policy</a></span>
+                                </label>
+                            </div>
+                            
+                            <button type="submit" class="auth-btn mb-5">Create Account</button>
+                            
+                            <div class="relative my-5">
+                                <div class="absolute inset-0 flex items-center">
+                                    <div class="w-full border-t border-gray-300"></div>
+                                </div>
+                                <div class="relative flex justify-center">
+                                    <span class="px-3 bg-white text-gray-500 text-xs">or continue with</span>
+                                </div>
+                            </div>
+                            
+                            <button type="button" class="social-login-btn">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 48 48">
+                                    <path fill="#FFC107" d="M43.611 20.083H42V20H24v8h11.303c-1.649 4.657-6.08 8-11.303 8c-6.627 0-12-5.373-12-12s5.373-12 12-12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4C12.955 4 4 12.955 4 24s8.955 20 20 20s20-8.955 20-20c0-1.341-.138-2.65-.389-3.917z"/>
+                                    <path fill="#FF3D00" d="m6.306 14.691 6.571 4.819C14.655 15.108 18.961 12 24 12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4 16.318 4 9.656 8.337 6.306 14.691z"/>
+                                    <path fill="#4CAF50" d="M24 44c5.166 0 9.86-1.977 13.409-5.192l-6.19-5.238A11.91 11.91 0 0 1 24 36c-5.202 0-9.619-3.317-11.283-7.946l-6.522 5.025C9.505 39.556 16.227 44 24 44z"/>
+                                    <path fill="#1976D2" d="M43.611 20.083H42V20H24v8h11.303a12.04 12.04 0 0 1-4.087 5.571l.003-.002l6.19 5.238C36.971 39.205 44 34 44 24c0-1.341-.138-2.65-.389-3.917z"/>
+                                </svg>
+                                <span>Continue with Google</span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-text">
+            <p>© 2023 PUFFSNMORE. All rights reserved.</p>
+            <p class="mt-1">Need help? <a href="/contact">Contact Support</a></p>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const loginTab = document.getElementById('loginTab');
+            const signupTab = document.getElementById('signupTab');
+            const tabSlider = document.querySelector('.auth-tab-slider');
+            const formContainer = document.querySelector('.auth-form-container');
+            
+            loginTab.addEventListener('click', function() {
+                // Update tabs
+                loginTab.classList.add('active');
+                loginTab.classList.add('text-gray-800');
+                loginTab.classList.remove('text-gray-500');
+                signupTab.classList.remove('active');
+                signupTab.classList.remove('text-gray-800');
+                signupTab.classList.add('text-gray-500');
+                
+                // Move slider
+                tabSlider.classList.add('login');
+                tabSlider.classList.remove('signup');
+                
+                // Show login form
+                formContainer.classList.add('login');
+                formContainer.classList.remove('signup');
+            });
+            
+            signupTab.addEventListener('click', function() {
+                // Update tabs
+                signupTab.classList.add('active');
+                signupTab.classList.add('text-gray-800');
+                signupTab.classList.remove('text-gray-500');
+                loginTab.classList.remove('active');
+                loginTab.classList.remove('text-gray-800');
+                loginTab.classList.add('text-gray-500');
+                
+                // Move slider
+                tabSlider.classList.add('signup');
+                tabSlider.classList.remove('login');
+                
+                // Show signup form
+                formContainer.classList.add('signup');
+                formContainer.classList.remove('login');
+            });
+        });
+    </script>
+</body>
+</html> 

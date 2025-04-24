@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App Banners - PUFFSNMORE Admin</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/favicon.png">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    
+    <style>
+        .sidebar {
+            background-color: #1e293b;
+            color: white;
+            width: 256px;
+            height: 100vh;
+            position: fixed;
+            left: 0;
+            top: 0;
+        }
+        
+        .sidebar-link {
+            display: flex;
+            align-items: center;
+            padding: 12px 24px;
+            color: #f8fafc;
+            transition: all 0.2s;
+        }
+        
+        .sidebar-link:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .sidebar-link.active {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        .sidebar-icon {
+            width: 20px;
+            margin-right: 12px;
+            text-align: center;
+        }
+        
+        .content-area {
+            margin-left: 256px;
+            padding: 24px;
+            min-height: 100vh;
+            background-color: #f8fafc;
+        }
+        
+        .card {
+            background-color: white;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border-radius: 0.375rem;
+            border: 1px solid #e2e8f0;
+            background-color: #f8fafc;
+            transition: all 0.2s;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+            background-color: white;
+        }
+        
+        .btn-primary {
+            background-color: #3b82f6;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.375rem;
+            font-weight: 600;
+            transition: all 0.2s;
+            border: none;
+        }
+        
+        .btn-primary:hover {
+            background-color: #2563eb;
+        }
+        
+        .file-input-label {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 1.5rem;
+            background-color: #f3f4f6;
+            border: 2px dashed #d1d5db;
+            border-radius: 0.375rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .file-input-label:hover {
+            background-color: #e5e7eb;
+            border-color: #9ca3af;
+        }
+        
+        .banner-card {
+            border: 1px solid #e5e7eb;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+        }
+        
+        .banner-image {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .banner-details {
+            padding: 1rem;
+        }
+        
+        .action-btn {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+        
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+        }
+        
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+        
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        
+        input:checked + .toggle-slider {
+            background-color: #3b82f6;
+        }
+        
+        input:checked + .toggle-slider:before {
+            transform: translateX(26px);
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100">
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="p-4 flex items-center">
+            <img src="/pups logo.png" alt="PUFFSNMORE" class="h-10 mr-3">
+            <h1 class="text-xl font-bold">PUFFSNMORE</h1>
+        </div>
+        
+        <nav class="mt-6">
+            <a href="/admin" class="sidebar-link">
+                <span class="sidebar-icon"><i class="fas fa-th-large"></i></span>
+                Admin Dashboard
+            </a>
+            
+            <a href="/admin/users" class="sidebar-link">
+                <span class="sidebar-icon"><i class="fas fa-users"></i></span>
+                Users
+            </a>
+            
+            <a href="/admin/admins" class="sidebar-link">
+                <span class="sidebar-icon"><i class="fas fa-user-shield"></i></span>
+                Admins
+            </a>
+            
+            <a href="/admin/coupons" class="sidebar-link">
+                <span class="sidebar-icon"><i class="fas fa-tags"></i></span>
+                Coupons
+            </a>
+            
+            <a href="/admin/orders" class="sidebar-link">
+                <span class="sidebar-icon"><i class="fas fa-shopping-cart"></i></span>
+                Orders
+            </a>
+            
+            <a href="/admin/products" class="sidebar-link">
+                <span class="sidebar-icon"><i class="fas fa-box"></i></span>
+                All Products
+            </a>
+            
+            <a href="/admin/create" class="sidebar-link">
+                <span class="sidebar-icon"><i class="fas fa-plus-circle"></i></span>
+                Create Product
+            </a>
+            
+            <a href="/admin/categories" class="sidebar-link">
+                <span class="sidebar-icon"><i class="fas fa-folder"></i></span>
+                Categories
+            </a>
+            
+            <a href="/admin/subcategories" class="sidebar-link">
+                <span class="sidebar-icon"><i class="fas fa-folder-open"></i></span>
+                Sub Categories
+            </a>
+            
+            <a href="/admin/analytics" class="sidebar-link">
+                <span class="sidebar-icon"><i class="fas fa-chart-bar"></i></span>
+                Order Analytics
+            </a>
+            
+            <a href="/admin/banners/website" class="sidebar-link">
+                <span class="sidebar-icon"><i class="fas fa-image"></i></span>
+                Website Banners
+            </a>
+            
+            <a href="/admin/banners/app" class="sidebar-link active">
+                <span class="sidebar-icon"><i class="fas fa-mobile-alt"></i></span>
+                App Banners
+            </a>
+            
+            <a href="/admin/topbars" class="sidebar-link">
+                <span class="sidebar-icon"><i class="fas fa-window-maximize"></i></span>
+                TopBars
+            </a>
+            
+            <a href="/admin/offers" class="sidebar-link">
+                <span class="sidebar-icon"><i class="fas fa-gift"></i></span>
+                Home Screen Offers
+            </a>
+        </nav>
+    </div>
+    
+    <!-- Main Content -->
+    <div class="content-area">
+        <div class="mb-8">
+            <h1 class="text-3xl font-bold text-gray-800">App Banners</h1>
+            <p class="text-gray-600 mt-2">Manage banners for the mobile application</p>
+        </div>
+        
+        <!-- Create Banner Form -->
+        <div class="card mb-8">
+            <h2 class="text-xl font-bold text-gray-800 mb-4">Add New Banner</h2>
+            
+            <form action="/admin/banners/app/create" method="POST" enctype="multipart/form-data">
+                <div class="mb-4">
+                    <label for="bannerTitle" class="block text-sm font-medium text-gray-700 mb-1">Banner Title</label>
+                    <input type="text" id="bannerTitle" name="title" class="form-input" placeholder="Enter banner title" required>
+                </div>
+                
+                <div class="mb-4">
+                    <label for="bannerLink" class="block text-sm font-medium text-gray-700 mb-1">Redirect Link</label>
+                    <input type="text" id="bannerLink" name="link" class="form-input" placeholder="https://example.com or /products/category" required>
+                </div>
+                
+                <div class="mb-4">
+                    <label for="bannerType" class="block text-sm font-medium text-gray-700 mb-1">Banner Type</label>
+                    <select id="bannerType" name="type" class="form-input" required>
+                        <option value="">Select banner type</option>
+                        <option value="main">Main Banner (Top)</option>
+                        <option value="secondary">Secondary Banner</option>
+                        <option value="promotional">Promotional Banner</option>
+                    </select>
+                </div>
+                
+                <div class="mb-4 flex items-center">
+                    <label class="relative inline-flex items-center cursor-pointer mr-8">
+                        <input type="checkbox" name="active" value="true" class="sr-only peer" checked>
+                        <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                        <span class="ml-3 text-sm font-medium text-gray-900">Active</span>
+                    </label>
+                </div>
+                
+                <div class="mb-6">
+                    <label for="bannerImage" class="block text-sm font-medium text-gray-700 mb-1">Banner Image</label>
+                    <p class="text-xs text-gray-500 mb-2">Recommended size: 1200x300px, Max file size: 2MB</p>
+                    <label for="bannerImage" class="file-input-label">
+                        <input type="file" id="bannerImage" name="image" class="hidden" accept="image/*" required>
+                        <span>Choose File</span>
+                    </label>
+                    <div id="fileSelectedText" class="text-sm text-gray-500 mt-1">No file chosen</div>
+                </div>
+                
+                <div>
+                    <button type="submit" class="btn-primary">Add Banner</button>
+                </div>
+            </form>
+        </div>
+        
+        <!-- Banners List -->
+        <div class="card">
+            <h2 class="text-xl font-bold text-gray-800 mb-4">Active Banners</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Banner 1 -->
+                <div class="banner-card">
+                    <img src="/product-banner1.jpg" alt="Summer Special Offer" class="banner-image">
+                    <div class="banner-details">
+                        <div class="flex justify-between items-center mb-2">
+                            <h3 class="font-bold text-gray-800">Summer Special Offer</h3>
+                            <div class="flex items-center">
+                                <label class="toggle-switch mr-3">
+                                    <input type="checkbox" checked>
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                        <p class="text-sm text-gray-600 mb-3">Link: /products/summer-special</p>
+                        <p class="text-xs text-blue-600 mb-3">Type: Main Banner</p>
+                        <div class="flex justify-end space-x-2">
+                            <button class="action-btn bg-gray-100 text-blue-600 hover:bg-blue-50">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="action-btn bg-gray-100 text-red-600 hover:bg-red-50">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Banner 2 -->
+                <div class="banner-card">
+                    <img src="/product-banner2.jpg" alt="New Arrivals" class="banner-image">
+                    <div class="banner-details">
+                        <div class="flex justify-between items-center mb-2">
+                            <h3 class="font-bold text-gray-800">New Arrivals</h3>
+                            <div class="flex items-center">
+                                <label class="toggle-switch mr-3">
+                                    <input type="checkbox" checked>
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                        <p class="text-sm text-gray-600 mb-3">Link: /products/new-arrivals</p>
+                        <p class="text-xs text-blue-600 mb-3">Type: Secondary Banner</p>
+                        <div class="flex justify-end space-x-2">
+                            <button class="action-btn bg-gray-100 text-blue-600 hover:bg-blue-50">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="action-btn bg-gray-100 text-red-600 hover:bg-red-50">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Banner 3 -->
+                <div class="banner-card">
+                    <img src="/product-banner3.jpg" alt="Weekend Flash Sale" class="banner-image">
+                    <div class="banner-details">
+                        <div class="flex justify-between items-center mb-2">
+                            <h3 class="font-bold text-gray-800">Weekend Flash Sale</h3>
+                            <div class="flex items-center">
+                                <label class="toggle-switch mr-3">
+                                    <input type="checkbox">
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                        <p class="text-sm text-gray-600 mb-3">Link: /promotions/flash-sale</p>
+                        <p class="text-xs text-blue-600 mb-3">Type: Promotional Banner</p>
+                        <div class="flex justify-end space-x-2">
+                            <button class="action-btn bg-gray-100 text-blue-600 hover:bg-blue-50">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="action-btn bg-gray-100 text-red-600 hover:bg-red-50">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // File input handling
+        document.getElementById('bannerImage').addEventListener('change', function(e) {
+            const fileName = e.target.files[0]?.name || 'No file chosen';
+            document.getElementById('fileSelectedText').textContent = fileName;
+        });
+    </script>
+</body>
+</html> 

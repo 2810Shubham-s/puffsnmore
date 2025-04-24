@@ -17,8 +17,27 @@ app.get('/login', (req, res) => {
 app.get('/info', (req, res) => {
   res.render('productInfo',);
 });
-app.get('/product', (req, res) => {
-  res.render('products',);
+app.get('/admin', (req, res) => {
+  res.render('admin/dashboard',);
 });
+app.get('/admin/create', (req, res) => {
+  res.render('admin/create-product',);
+});
+app.get('/admin/products', (req, res) => {
+  res.render('admin/products',);
+});
+app.get('/admin/categories', (req, res) => {
+  res.render('admin/categories',);
+});
+app.get('/admin/offers', (req, res) => {
+  res.render('admin/offers',);
+});
+app.get('/admin/coupons', (req, res) => {
+  res.render('admin/coupons',);
+});
+app.get('/admin/banners', (req, res) => {
+  res.render('admin/banners-app',);
+});
+
 
 app.listen(3001);
